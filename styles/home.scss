@@ -18,7 +18,13 @@ nav {
 }
 
 nav h1 {
+  display: inline-block;
   margin: 0;
+}
+
+nav h4 {
+  display: inline-block;
+  float: right;
 }
 
 #message-list {

@@ -1,44 +1,38 @@
 import React, {Component} from 'react';
 
+// RegEx: match "/..." /(?:^\/)(\w+)/g   match second word when starts with "/username" /(?:^\/username\s)(\w+)/g
+
 const UserName = React.createClass({
   getInitialState: function() {
-    return ({username: this.props.username})
+    return ({username: "Anonymous"})
   },
-  handleChange: function(event) {
-  //console.log("Shits changed bruh")
-  this.setState({username: event.target.value});
-},
   render: function() {
     return(
-      <input id="username" type="text" placeholder="Your Name (Optional)" value={this.state.username} onChange={this.handleChange}/>
+      <span>{this.props.username}
+      <input type="hidden" id="username" value={this.props.username} />
+      </span>
     );
   }
 })
 
 const NewMessage = React.createClass({
-  getInitialState: function() {
-    return ({newmessage: ""})
-  },
-  handleChange: function(event) {
-  //console.log("Shits changed bruh")
-  this.setState({newmessage: event.target.value});
-},
   render: function() {
     return(
-      <input id="newmessage" type="text" placeholder="Type a message and hit ENTER" value={this.state.newmessage} onChange={this.handleChange}/>
+      <input id="newmessage" type="text" placeholder="Type a message and hit ENTER" />
     );
   }
 })
 
 const ChatBar = React.createClass({
   onSubmit: function(event) {
-  event.preventDefault()
-  let username = event.target.username.value;
-  let message = event.target.newmessage.value;
-  //console.log("Shits changed bruh")
-  this.props.onMessageSubmit(username, message)
-  event.target.newmessage.value = ""
-},
+    event.preventDefault()
+    let username = event.target.username.value;
+    let message = event.target.newmessage.value;
+    //console.log("Shits changed bruh")
+    this.props.onMessageSubmit(username, message)
+    //console.log(event.target.username.value)
+    event.target.newmessage.value = ""
+  },
   render: function() {
     console.log('Rendering <ChatBar />')
     return (
